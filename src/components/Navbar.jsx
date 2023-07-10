@@ -1,22 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {Link, NavLink} from 'react-router-dom'
 
-const activeLinkClass = ({isActive}) => {
-  return isActive ? 'rounded-sm bg-slate-300 py-1 px-2 text-gray-700' : 'py-1 px-2 text-slate-700'
-} 
-
-
 const Navbar = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+
   return (
     <nav>
-      <ul>
-      <li>
-          <NavLink to="/" className={activeLinkClass}>Главное</NavLink>
-        </li>
-        <li>
-          <NavLink to="/productSlice" className={activeLinkClass}>Товары</NavLink>
-        </li>
-      </ul>
+      <h1>Добро пожаловать</h1>
+      <NavLink to="/" >Главное</NavLink>
+      <NavLink to="/cart" ><div>Корзина ({cartItems.length})</div></NavLink>
+      
     </nav>
   );
 };
